@@ -41,34 +41,10 @@ name.addEventListener('input',(e)=>{
 joinButton.addEventListener('click',(e)=>{
     let userName = name.value;
     let roomName = room.value;
-
-    socket = new WebSocket(`ws://localhost:3000/${roomName}?${userName}`);
+    let wsURL = 'ws://'+ window.location.href.split('//')/[1];
+    socket = new WebSocket(`ws://${window.location.host}/${roomName}?${userName}`);
 
     configSocket(socket,roomName,userName);
-
-    // socket.onopen = (e) =>{
-    //     currentUser = userName;
-    //     mainContainer.style.display = "none";
-    //     maiChatContainer.style.display = "grid";
-
-    //     roomTitle.innerHTML = roomName;
-    // }
-
-    
-
-    // socket.onmessage = e =>{
-    //     // alert(e.data);
-    //     let received = JSON.parse(e.data);
-    //     console.log(received);
-    //     appendMessage(received.isNotif,received.message,false,received.sender);
-    // }
-
-    // sendButton.addEventListener('click',(e)=>{
-    //     if(messageInput.value.length > 0){
-    //         appendMessage(false,messageInput.value,true);
-    //         socket.send(messageInput.value);
-    //     }
-    // })
 })
 
 function appendMessage(isNotif,message,self=false,sender=null){
