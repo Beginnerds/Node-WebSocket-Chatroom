@@ -42,7 +42,7 @@ joinButton.addEventListener('click',(e)=>{
     let userName = name.value;
     let roomName = room.value;
     let wsURL = 'ws://'+ window.location.href.split('//')/[1];
-    socket = new WebSocket(`ws://${window.location.host}/${roomName}?${userName}`);
+    socket = new WebSocket(`wss://${window.location.host}/${roomName}?${userName}`);
 
     configSocket(socket,roomName,userName);
 })
@@ -91,7 +91,7 @@ function switchRooms(e){
     onlineUsersList.innerHTML ="";
     sendButton.removeEventListener('click',sendMessage);
     socket.close();
-    socket = new WebSocket(`wss://localhost:3000/${roomName}?${currentUser}`);
+    socket = new WebSocket(`wss://${window.location.host}/${roomName}?${currentUser}`);
     configSocket(socket,roomName,currentUser);
 }
 
