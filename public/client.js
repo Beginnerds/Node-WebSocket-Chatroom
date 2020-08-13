@@ -91,7 +91,7 @@ function switchRooms(e){
     onlineUsersList.innerHTML ="";
     sendButton.removeEventListener('click',sendMessage);
     socket.close();
-    socket = new WebSocket(`ws://localhost:3000/${roomName}?${currentUser}`);
+    socket = new WebSocket(`wss://localhost:3000/${roomName}?${currentUser}`);
     configSocket(socket,roomName,currentUser);
 }
 
